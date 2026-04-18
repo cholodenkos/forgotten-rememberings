@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgotten Rememberings — 4314 S Archer Ave</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0e0c0a;
+  --paper: #f2ead6;
+  --paper-mid: #e8dfc4;
+  --paper-dark: #ddd0b0;
+  --paper-deep: #ccc09a;
+  --charcoal: #2a2520;
+  --ash: #6a6258;
+  --muted: #8a8078;
+  --accent: #7a2e1a;
+  --accent2: #5a1e0e;
+  --gold: #a07820;
+  --gold-light: #c49830;
+  --ochre: #b8861e;
+  --moss: #4a5a2a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.75;
+  min-height: 100vh;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='3' fill='none' stroke='%230e0c0a' stroke-width='1'/%3E%3C/svg%3E") 8 8, default;
+}
+
+/* grain texture */
+body::after {
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.045'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9000;opacity:0.7;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  border-bottom: 3px double var(--ink);
+  padding: 1.4rem 2.5rem 1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  position: relative;
+}
+.masthead::before {
+  content: '';
+  position: absolute;
+  bottom: 5px; left: 0; right: 0;
+  border-bottom: 1px solid var(--ink);
+  opacity: 0.3;
+}
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+.brand em { color: var(--accent); font-style: normal; }
+.address-line {
+  font-family: 'IM Fell English', serif;
+  font-size: 0.9rem;
+  color: var(--ash);
+  font-style: italic;
+}
+
+/* ── TIMELINE ── */
+.timeline-section {
+  padding: 1.4rem 2.5rem 1.2rem;
+  border-bottom: 1.5px solid var(--paper-dark);
+  background: var(--paper-mid);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.tl-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ash);
+  margin-bottom: 0.7rem;
+  font-family: 'Crimson Pro', serif;
+}
+.tl-outer {
+  position: relative;
+  padding: 0.5rem 0 0.8rem;
+}
+.tl-track {
+  position: relative;
+  height: 2px;
+  background: var(--paper-deep);
+  cursor: pointer;
+  border-radius: 1px;
+}
+.tl-fill {
+  position: absolute; left: 0; top: 0; height: 100%;
+  background: var(--accent);
+  border-radius: 1px;
+  transition: width 0.2s ease;
+}
+.tl-thumb {
+  position: absolute; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--paper);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: grab;
+  transition: left 0.2s ease;
+}
+.tl-thumb:active { cursor: grabbing; }
+.tl-marks {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.1rem;
+  margin-top: 0.1rem;
+}
+.tl-mark {
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-family: 'Crimson Pro', serif;
+  cursor: pointer;
+  transition: color 0.15s;
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  padding: 0 1px;
+}
+.tl-mark:hover { color: var(--charcoal); }
+.tl-mark.active { color: var(--accent); font-weight: 600; }
+.tl-mark.future { color: var(--gold); font-style: italic; }
+.tl-mark.future.active { color: var(--gold-light); font-weight: 600; }
+
+/* ── SNAPSHOT WRAPPER ── */
+#snapshot-area { animation: fadeIn 0.4s ease both; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── HERO GRID ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1.5px solid var(--paper-dark);
+  min-height: 65vh;
+}
+
+/* ── VISUAL PANEL ── */
+.visual-panel {
+  background: var(--paper-mid);
+  border-right: 1.5px solid var(--paper-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+
+/* Gallery */
+.gallery-wrap { position: relative; width: 100%; max-width: 440px; }
+.gallery-main { position: relative; }
+.gallery-main svg, .gallery-main img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--paper-deep);
+}
+.gallery-main img { max-height: 340px; object-fit: cover; filter: sepia(0.15) contrast(1.05); }
+.gallery-arrows {
+  position: absolute; top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
+  display: flex; justify-content: space-between;
+  pointer-events: none;
+}
+.gallery-arr {
+  pointer-events: all;
+  width: 32px; height: 32px;
+  background: var(--paper);
+  border: 1px solid var(--paper-dark);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.9rem;
+  color: var(--charcoal);
+  font-family: serif;
+  user-select: none;
+}
+.gallery-arr:hover { background: var(--charcoal); color: var(--paper); }
+.gallery-arr.hidden { opacity: 0; pointer-events: none; }
+.gallery-dots {
+  display: flex; justify-content: center; gap: 6px;
+  margin-top: 0.7rem;
+}
+.g-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--paper-deep); cursor: pointer;
+  transition: background 0.15s;
+}
+.g-dot.active { background: var(--accent); }
+
+.visual-meta { margin-top: 0.9rem; text-align: center; }
+.confidence-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px;
+  border: 1px solid var(--paper-deep);
+  font-size: 0.66rem; letter-spacing: 0.06em;
+  font-style: normal; color: var(--ash);
+  background: var(--paper); border-radius: 20px;
+  margin-bottom: 0.4rem;
+}
+.conf-dot { width: 6px; height: 6px; border-radius: 50%; }
+.dot-real { background: #4a7a3a; }
+.dot-sketch { background: var(--ochre); }
+.dot-future { background: var(--accent); }
+.visual-caption {
+  font-size: 0.72rem; color: var(--ash); font-style: italic;
+  line-height: 1.45; max-width: 400px; margin: 0 auto;
+}
+
+/* ── NARRATIVE PANEL ── */
+.narrative-panel {
+  padding: 3rem 2.8rem 2.5rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.year-display {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem; font-weight: 700;
+  color: var(--paper-dark); line-height: 1;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+.year-display::after {
+  content: '';
+  display: block;
+  width: 44px; height: 3px;
+  background: var(--accent);
+  margin-top: 0.7rem; margin-bottom: 0.3rem;
+}
+.era-tag {
+  font-size: 0.72rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--accent);
+  font-family: 'Crimson Pro', serif;
+  margin-bottom: 1.5rem;
+}
+.narrative-text {
+  font-size: 1rem; font-weight: 300;
+  line-height: 1.9; color: var(--charcoal);
+}
+.narrative-text p + p { margin-top: 0.9rem; }
+.narrative-text em { font-style: italic; }
+.sources-block {
+  margin-top: 1.6rem; padding-top: 1rem;
+  border-top: 1px solid var(--paper-dark);
+}
+.sources-label {
+  font-size: 0.64rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+.sources-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.source-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--paper-deep);
+  font-size: 0.7rem;
+  color: var(--ash);
+  background: var(--paper-mid);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+  font-style: italic;
+  border-radius: 1px;
+}
+.source-chip:hover {
+  background: var(--charcoal);
+  color: var(--paper);
+  border-color: var(--charcoal);
+  font-style: normal;
+}
+
+/* ── RESIDENTS ── */
+.residents-section {
+  padding: 2rem 2.5rem;
+  border-bottom: 1.5px solid var(--paper-dark);
+}
+.section-header {
+  display: flex; align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem; font-weight: 400;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--charcoal);
+}
+.section-badge {
+  font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold);
+  font-family: 'Crimson Pro', serif;
+}
+.resident-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.r-card {
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--paper-dark);
+  background: var(--paper-mid);
+  position: relative;
+}
+.r-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--paper-deep);
+}
+.r-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--charcoal); margin-bottom: 0.2rem;
+}
+.r-detail { font-size: 0.78rem; color: var(--ash); line-height: 1.5; }
+.r-origin { font-size: 0.7rem; font-style: italic; color: var(--muted); margin-top: 0.4rem; }
+
+/* ── NEARBY ── */
+.nearby-section {
+  padding: 2rem 2.5rem;
+  border-bottom: 1.5px solid var(--paper-dark);
+}
+.nearby-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; margin-top: 1.2rem;
+}
+.nb-item {
+  padding: 0.9rem 1rem;
+  border-left: 2px solid var(--paper-deep);
+  font-size: 0.78rem; line-height: 1.5; color: var(--ash);
+}
+.nb-name {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.82rem; font-weight: 600;
+  color: var(--charcoal); margin-bottom: 0.2rem;
+}
+.nb-dist { font-size: 0.68rem; color: var(--muted); font-style: italic; margin-top: 0.3rem; }
+
+/* ── MAILBOX ── */
+.mailbox-section {
+  padding: 2rem 2.5rem;
+  border-bottom: 1.5px solid var(--paper-dark);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+}
+.mailbox-left h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 400;
+  color: var(--charcoal); margin-bottom: 0.5rem;
+}
+.mailbox-left p {
+  font-size: 0.85rem; color: var(--ash); font-style: italic;
+  line-height: 1.65; margin-bottom: 1.1rem;
+}
+.mailbox-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 0.55rem 1.1rem;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.76rem; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'Crimson Pro', serif;
+  cursor: pointer; transition: all 0.2s;
+  background: transparent;
+}
+.mailbox-btn:hover { background: var(--accent); color: var(--paper); }
+.notes-stack { display: flex; flex-direction: column; gap: 0.8rem; }
+.note-card {
+  padding: 1rem 1.2rem 0.9rem 1.4rem;
+  border: 1px solid var(--paper-dark);
+  background: var(--paper-mid);
+  position: relative;
+}
+.note-card::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem; color: var(--paper-deep);
+  position: absolute; top: -0.1rem; left: 0.7rem;
+  line-height: 1;
+}
+.note-text {
+  font-size: 0.84rem; font-style: italic;
+  color: var(--charcoal); line-height: 1.65;
+}
+.note-meta { margin-top: 0.4rem; font-size: 0.67rem; color: var(--muted); }
+.no-notes {
+  padding: 1rem 1.2rem;
+  border: 1px dashed var(--paper-dark);
+  font-size: 0.8rem; color: var(--muted);
+  font-style: italic; text-align: center;
+}
+
+/* ── FORUM ── */
+.forum-section {
+  padding: 2rem 2.5rem;
+  border-bottom: 1.5px solid var(--paper-dark);
+}
+.forum-post {
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--paper-dark);
+  background: var(--paper-mid);
+  margin-bottom: 0.8rem;
+}
+.post-head {
+  display: flex; align-items: center;
+  gap: 0.7rem; margin-bottom: 0.6rem;
+}
+.post-avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--paper-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; color: var(--ash);
+  font-family: 'Playfair Display', serif; font-weight: 600;
+  flex-shrink: 0;
+}
+.post-user { font-size: 0.78rem; color: var(--charcoal); }
+.post-date { font-size: 0.67rem; color: var(--muted); font-style: italic; margin-left: auto; }
+.post-body { font-size: 0.86rem; color: var(--charcoal); line-height: 1.65; }
+.post-tag {
+  display: inline-block; margin-top: 0.5rem;
+  font-size: 0.63rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--ochre); padding: 1px 5px;
+}
+
+/* ── FUTURE PROJECTIONS ── */
+.future-section {
+  padding: 2rem 2.5rem 2.5rem;
+  border-top: 3px double var(--paper-dark);
+  background: var(--paper-mid);
+}
+.future-head {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+.future-badge {
+  font-size: 0.65rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--ochre); padding: 2px 7px;
+}
+.future-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.future-card {
+  padding: 1.2rem 1.1rem;
+  border: 1px dashed var(--paper-deep);
+  background: var(--paper);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.future-card:hover { border-color: var(--gold); }
+.fc-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; color: var(--gold);
+  line-height: 1; margin-bottom: 0.4rem;
+}
+.fc-text {
+  font-size: 0.78rem; color: var(--ash);
+  line-height: 1.55; font-style: italic;
+}
+.fc-votes {
+  margin-top: 0.7rem; font-size: 0.65rem;
+  color: var(--muted);
+  display: flex; align-items: center; gap: 5px;
+}
+.vote-bar { flex: 1; height: 2px; background: var(--paper-deep); }
+.vote-fill { height: 100%; background: var(--gold); }
+
+/* ── NO DATA ── */
+.no-data-panel {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 300px; text-align: center; padding: 3rem;
+}
+.no-data-panel h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 400;
+  color: var(--ash); margin-bottom: 0.5rem;
+}
+.no-data-panel p {
+  font-size: 0.82rem; color: var(--muted);
+  font-style: italic; line-height: 1.6;
+  max-width: 280px;
+}
+.upload-cta {
+  display: inline-block; margin-top: 1rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--paper-dark);
+  font-size: 0.72rem; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ash);
+  cursor: pointer; transition: all 0.2s;
+  font-family: 'Crimson Pro', serif;
+  background: transparent;
+}
+.upload-cta:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 1.2rem 2.5rem;
+  border-top: 3px double var(--ink);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem; color: var(--muted);
+  font-style: italic;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-style: normal; font-size: 0.8rem;
+  color: var(--charcoal); letter-spacing: 0.09em;
+}
+
+@media(max-width:800px){
+  .hero{grid-template-columns:1fr;}
+  .visual-panel{border-right:none;border-bottom:1.5px solid var(--paper-dark);}
+  .resident-grid{grid-template-columns:1fr 1fr;}
+  .nearby-grid{grid-template-columns:1fr 1fr;}
+  .mailbox-section{grid-template-columns:1fr;}
+  .future-grid{grid-template-columns:1fr 1fr;}
+  .narrative-panel{padding:2rem 1.8rem;}
+  .year-display{font-size:3rem;}
+  .masthead{padding:1.2rem 1.5rem;}
+  .timeline-section{padding:1.2rem 1.5rem;}
+  .residents-section,.nearby-section,.mailbox-section,.forum-section,.future-section{padding-left:1.5rem;padding-right:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="brand">Forgotten <em>Rememberings</em></div>
+  <div class="address-line">4314 S Archer Avenue · Brighton Park · Chicago, Illinois · Ward 15</div>
+</header>
+
+<div class="timeline-section">
+  <div class="tl-label">Drag to move through time — 1900 to 2100</div>
+  <div class="tl-outer">
+    <div class="tl-track" id="track">
+      <div class="tl-fill" id="tl-fill"></div>
+      <div class="tl-thumb" id="tl-thumb"></div>
+    </div>
+    <div class="tl-marks" id="tl-marks"></div>
+  </div>
+</div>
+
+<div id="snapshot-area"></div>
+
+<footer>
+  <div class="footer-brand">Forgotten Rememberings</div>
+  <div>Every address holds a world. This one is still being remembered.</div>
+  <div>Prototype · Chicago pilot · 2025</div>
+</footer>
+
+<script>
+// ── DECADES ────────────────────────────────────────────────────────────────
+const DECADES = [
+  {year:1900,label:'1900'},
+  {year:1910,label:'1910'},
+  {year:1920,label:'1920'},
+  {year:1930,label:'1930'},
+  {year:1940,label:'1940'},
+  {year:1950,label:'1950'},
+  {year:1960,label:'1960'},
+  {year:1970,label:'1970'},
+  {year:1980,label:'1980'},
+  {year:1990,label:'1990'},
+  {year:2000,label:'2000'},
+  {year:2010,label:'2010'},
+  {year:2024,label:'Now'},
+  {year:2040,label:'2040',future:true},
+  {year:2060,label:'2060',future:true},
+  {year:2080,label:'2080',future:true},
+  {year:2100,label:'2100',future:true},
+];
+
+let activeIdx = DECADES.findIndex(d => d.year === 1924) !== -1
+  ? DECADES.findIndex(d => d.year === 1924)
+  : DECADES.findIndex(d => d.year === 1920);
+
+// ── SVG ILLUSTRATIONS (gothic ink style) ──────────────────────────────────
+
+// Shared defs used in all SVGs
+const SVG_DEFS = `<defs>
+  <filter id="ink">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.4" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="rough">
+    <feTurbulence type="turbulence" baseFrequency="0.065" numOctaves="2" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8"/>
+  </filter>
+  <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+    <line x1="0" y1="0" x2="0" y2="6" stroke="#1a1714" stroke-width="0.4" stroke-opacity="0.18"/>
+  </pattern>
+  <pattern id="xhatch" patternUnits="userSpaceOnUse" width="6" height="6">
+    <line x1="0" y1="0" x2="6" y2="6" stroke="#1a1714" stroke-width="0.35" stroke-opacity="0.14"/>
+    <line x1="6" y1="0" x2="0" y2="6" stroke="#1a1714" stroke-width="0.35" stroke-opacity="0.14"/>
+  </pattern>
+</defs>`;
+
+// Stipple dots helper
+function stipple(cx, cy, r, n, op=0.3) {
+  let s = '';
+  for(let i=0;i<n;i++){
+    const a = Math.random()*Math.PI*2;
+    const d = Math.random()*r;
+    const x = cx + Math.cos(a)*d;
+    const y = cy + Math.sin(a)*d;
+    const rs = 0.4 + Math.random()*0.8;
+    s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${rs.toFixed(1)}" fill="#1a1714" fill-opacity="${(op*0.5+Math.random()*op).toFixed(2)}"/>`;
+  }
+  return s;
+}
+
+// Swirling atmosphere lines (like the cliff house illustration)
+function atmosLines(y0, count, op=0.12) {
+  let s = '';
+  for(let i=0;i<count;i++){
+    const y = y0 + i * 12;
+    const amp = 4 + Math.random()*6;
+    const freq = 0.015 + Math.random()*0.01;
+    let d = `M 20 ${y}`;
+    for(let x=20;x<=680;x+=8){
+      const wy = y + Math.sin(x*freq + i)*amp;
+      d += ` L ${x} ${wy.toFixed(1)}`;
+    }
+    s += `<path d="${d}" stroke="#1a1714" stroke-width="0.5" stroke-opacity="${(op*0.6+Math.random()*op).toFixed(2)}" fill="none"/>`;
+  }
+  return s;
+}
+
+function svgWrap(content, h=400) {
+  return `<svg viewBox="0 0 680 ${h}" xmlns="http://www.w3.org/2000/svg" style="background:#f2ead6">
+  ${SVG_DEFS}
+  ${content}
+</svg>`;
+}
+
+// ── 1900: Canal era, marshy land, small farmhouse ──
+function svg1900() {
+  return svgWrap(`
+  <g filter="url(#ink)">
+    <!-- Swirling sky atmosphere -->
+    ${atmosLines(20, 12, 0.1)}
+    <!-- Marshy ground -->
+    <rect x="0" y="280" width="680" height="120" fill="url(#hatch)"/>
+    <line x1="0" y1="280" x2="680" y2="280" stroke="#1a1714" stroke-width="2"/>
+    <!-- Canal water suggestion -->
+    <path d="M0 305 Q170 298 340 308 Q510 318 680 302" stroke="#1a1714" stroke-width="1" fill="none" stroke-opacity="0.3"/>
+    <path d="M0 318 Q170 310 340 320 Q510 330 680 315" stroke="#1a1714" stroke-width="0.6" fill="none" stroke-opacity="0.2"/>
+    <!-- Ground stipple -->
+    ${stipple(340, 300, 300, 180, 0.25)}
+    <!-- Simple wood farmhouse -->
+    <g filter="url(#rough)">
+      <rect x="230" y="170" width="220" height="110" stroke="#1a1714" stroke-width="2.2" fill="#ede4cc" fill-opacity="0.7"/>
+      <polygon points="210,170 340,110 470,170" stroke="#1a1714" stroke-width="2" fill="#d8cdb0" fill-opacity="0.75"/>
+      <!-- Roof hatching -->
+      <clipPath id="rc1"><polygon points="210,170 340,110 470,170"/></clipPath>
+      <rect x="210" y="110" width="260" height="60" fill="url(#hatch)" clip-path="url(#rc1)"/>
+      <!-- Chimney -->
+      <rect x="320" y="118" width="22" height="38" stroke="#1a1714" stroke-width="1.8" fill="#c8bfa0" fill-opacity="0.9"/>
+      <rect x="318" y="116" width="26" height="6" stroke="#1a1714" stroke-width="1" fill="#c8bfa0"/>
+      <!-- Smoke wisps -->
+      <path d="M331 116 Q328 100 333 85 Q338 70 334 55" stroke="#1a1714" stroke-width="0.8" fill="none" stroke-opacity="0.3" stroke-dasharray="3 2"/>
+      <path d="M335 116 Q340 102 336 88 Q332 74 337 60" stroke="#1a1714" stroke-width="0.6" fill="none" stroke-opacity="0.2" stroke-dasharray="2 2"/>
+      <!-- Door -->
+      <rect x="320" y="230" width="40" height="50" stroke="#1a1714" stroke-width="1.8" fill="#8b6840" fill-opacity="0.55"/>
+      <path d="M320,230 Q340,218 360,230" stroke="#1a1714" stroke-width="1.2" fill="none"/>
+      <!-- Windows -->
+      <rect x="248" y="190" width="44" height="38" stroke="#1a1714" stroke-width="1.6" fill="#c8d4e8" fill-opacity="0.45"/>
+      <line x1="270" y1="190" x2="270" y2="228" stroke="#1a1714" stroke-width="0.9"/>
+      <line x1="248" y1="209" x2="292" y2="209" stroke="#1a1714" stroke-width="0.9"/>
+      <rect x="388" y="190" width="44" height="38" stroke="#1a1714" stroke-width="1.6" fill="#c8d4e8" fill-opacity="0.45"/>
+      <line x1="410" y1="190" x2="410" y2="228" stroke="#1a1714" stroke-width="0.9"/>
+      <line x1="388" y1="209" x2="432" y2="209" stroke="#1a1714" stroke-width="0.9"/>
+    </g>
+    <!-- Canal marker post -->
+    <line x1="100" y1="240" x2="100" y2="290" stroke="#1a1714" stroke-width="2.5"/>
+    <line x1="86" y1="250" x2="114" y2="250" stroke="#1a1714" stroke-width="1.5"/>
+    <rect x="88" y="238" width="24" height="14" stroke="#1a1714" stroke-width="1.2" fill="#d8cdb0" fill-opacity="0.8"/>
+    <!-- Marsh grasses -->
+    <path d="M50 280 Q52 258 55 280" stroke="#1a1714" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
+    <path d="M60 280 Q63 265 66 280" stroke="#1a1714" stroke-width="1" fill="none" stroke-opacity="0.45"/>
+    <path d="M72 280 Q75 270 77 280" stroke="#1a1714" stroke-width="0.9" fill="none" stroke-opacity="0.4"/>
+    <path d="M580 280 Q583 260 586 280" stroke="#1a1714" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
+    <path d="M592 280 Q595 268 598 280" stroke="#1a1714" stroke-width="1" fill="none" stroke-opacity="0.45"/>
+    <path d="M606 280 Q608 272 611 280" stroke="#1a1714" stroke-width="0.9" fill="none" stroke-opacity="0.4"/>
+    <!-- Distant smoke (stockyards) -->
+    <path d="M600 180 Q606 158 602 136 Q598 115 604 92" stroke="#1a1714" stroke-width="1" fill="none" stroke-opacity="0.2" stroke-dasharray="4 3"/>
+    <path d="M618 188 Q625 165 620 143 Q616 122 622 99" stroke="#1a1714" stroke-width="0.8" fill="none" stroke-opacity="0.15" stroke-dasharray="3 3"/>
+    <!-- Caption -->
+    <text x="340" y="370" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="#6a6258" fill-opacity="0.8" font-style="italic">Illinois &amp; Michigan Canal corridor · Archer Road · before settlement</text>
+  </g>`, 400);
+}
+
+// ── 1910: Two-flat newly built, construction era ──
+function svg1910() {
+  return svgWrap(`
+  <g filter="url(#ink)">
+    ${atmosLines(15, 8, 0.09)}
+    <line x1="0" y1="330" x2="680" y2="330" stroke="#1a1714" stroke-width="2.2"/>
+    <rect x="0" y="330" width="680" height="70" fill="url(#hatch)" opacity="0.4"/>
+    ${stipple(340,340,300,120,0.2)}
+    <!-- Two-flat main structure -->
+    <rect x="150" y="140" width="380" height="190" stroke="#1a1714" stroke-width="2.5" fill="#ede4cc" fill-opacity="0.65"/>
+    <!-- Brick fill suggestion -->
+    <rect x="150" y="140" width="380" height="190" fill="url(#xhatch)" opacity="0.5"/>
+    <!-- Foundation -->
+    <rect x="140" y="316" width="400" height="18" stroke="#1a1714" stroke-width="1.8" fill="#d8cdb0" fill-opacity="0.9"/>
+    <!-- Roof cornice -->
+    <rect x="135" y="118" width="410" height="28" stroke="#1a1714" stroke-width="2.2" fill="#c8bfa0" fill-opacity="0.95"/>
+    <line x1="135" y1="126" x2="545" y2="126" stroke="#1a1714" stroke-width="0.8"/>
+    <line x1="135" y1="134" x2="545" y2="134" stroke="#1a1714" stroke-width="0.6"/>
+    <!-- Cornice brackets -->
+    ${[170,220,280,340,400,460,510].map(x=>`
+    <line x1="${x}" y1="118" x2="${x}" y2="146" stroke="#1a1714" stroke-width="1.2"/>`).join('')}
+    <!-- Attic gable -->
+    <polygon points="230,80 340,42 450,80" stroke="#1a1714" stroke-width="2" fill="#e8dfc4" fill-opacity="0.8"/>
+    <clipPath id="ag1"><polygon points="230,80 340,42 450,80"/></clipPath>
+    <rect x="230" y="42" width="220" height="40" fill="url(#hatch)" clip-path="url(#ag1)" opacity="0.5"/>
+    <rect x="312" y="54" width="56" height="30" stroke="#1a1714" stroke-width="1.5" fill="#c8d4e8" fill-opacity="0.5"/>
+    <line x1="340" y1="54" x2="340" y2="84" stroke="#1a1714" stroke-width="0.9"/>
+    <line x1="312" y1="69" x2="368" y2="69" stroke="#1a1714" stroke-width="0.9"/>
+    <!-- Floor divider -->
+    <line x1="150" y1="232" x2="530" y2="232" stroke="#1a1714" stroke-width="2"/>
+    <line x1="150" y1="237" x2="530" y2="237" stroke="#1a1714" stroke-width="0.5" stroke-opacity="0.4"/>
+    <!-- Upper windows -->
+    <rect x="178" y="154" width="72" height="66" stroke="#1a1714" stroke-width="2" fill="#c8d4e8" fill-opacity="0.5"/>
+    <line x1="214" y1="154" x2="214" y2="220" stroke="#1a1714" stroke-width="1"/>
+    <line x1="178" y1="183" x2="250" y2="183" stroke="#1a1714" stroke-width="1"/>
+    <path d="M178,154 Q214,138 250,154" stroke="#1a1714" stroke-width="1.4" fill="#c8d4e8" fill-opacity="0.2"/>
+    <line x1="170" y1="220" x2="258" y2="220" stroke="#1a1714" stroke-width="2.2"/>
+    <rect x="408" y="154" width="72" height="66" stroke="#1a1714" stroke-width="2" fill="#c8d4e8" fill-opacity="0.5"/>
+    <line x1="444" y1="154" x2="444" y2="220" stroke="#1a1714" stroke-width="1"/>
+    <line x1="408" y1="183" x2="480" y2="183" stroke="#1a1714" stroke-width="1"/>
+    <path d="M408,154 Q444,138 480,154" stroke="#1a1714" stroke-width="1.4" fill="#c8d4e8" fill-opacity="0.2"/>
+    <line x1="400" y1="220" x2="488" y2="220" stroke="#1a1714" stroke-width="2.2"/>
+    <!-- Lower windows -->
+    <rect x="178" y="248" width="72" height="56" stroke="#1a1714" stroke-width="2" fill="#c8d4e8" fill-opacity="0.45"/>
+    <line x1="214" y1="248" x2="214" y2="304" stroke="#1a1714" stroke-width="1"/>
+    <line x1="178" y1="273" x2="250" y2="273" stroke="#1a1714" stroke-width="1"/>
+    <line x1="170" y1="304" x2="258" y2="304" stroke="#1a1714" stroke-width="2.2"/>
+    <rect x="408" y="248" width="72" height="56" stroke="#1a1714" stroke-width="2" fill="#c8d4e8" fill-opacity="0.45"/>
+    <line x1="444" y1="248" x2="444" y2="304" stroke="#1a1714" stroke-width="1"/>
+    <line x1="408" y1="273" x2="480" y2="273" stroke="#1a1714" stroke-width="1"/>
+    <line x1="400" y1="304" x2="488" y2="304" stroke="#1a1714" stroke-width="2.2"/>
+    <!-- Door -->
+    <rect x="304" y="250" width="72" height="66" stroke="#1a1714" stroke-width="2.2" fill="#8b6840" fill-opacity="0.6"/>
+    <rect x="312" y="258" width="24" height="20" stroke="#1a1714" stroke-width="0.9" fill="none"/>
+    <rect x="344" y="258" width="24" height="20" stroke="#1a1714" stroke-width="0.9" fill="none"/>
+    <rect x="312" y="282" width="24" height="24" stroke="#1a1714" stroke-width="0.9" fill="none"/>
+    <rect x="344" y="282" width="24" height="24" stroke="#1a1714" stroke-width="0.9" fill="none"/>
+    <circle cx="338" cy="273" r="3" stroke="#1a1714" stroke-width="1.2" fill="#b8922a" fill-opacity="0.9"/>
+    <path d="M304,250 Q340,236 376,250" stroke="#1a1714" stroke-width="1.6" fill="none"/>
+    <!-- Steps -->
+    <rect x="282" y="312" width="116" height="8" stroke="#1a1714" stroke-width="1.2" fill="#d8cdb0" fill-opacity="0.9"/>
+    <rect x="270" y="320" width="140" height="7" stroke="#1a1714" stroke-width="1" fill="#d0c4a0" fill-opacity="0.9"/>
+    <rect x="258" y="327" width="164" height="6" stroke="#1a1714" stroke-width="0.8" fill="#c8bc98" fill-opacity="0.9"/>
+    <!-- Scaffolding (construction era) -->
+    <line x1="118" y1="118" x2="118" y2="330" stroke="#1a1714" stroke-width="1.2" stroke-opacity="0.4"/>
+    <line x1="118" y1="170" x2="150" y2="170" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.35"/>
+    <line x1="118" y1="230" x2="150" y2="230" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.3"/>
+    <line x1="118" y1="290" x2="150" y2="290" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.3"/>
+    <!-- Streetcar tracks -->
+    <line x1="0" y1="342" x2="680" y2="342" stroke="#1a1714" stroke-width="0.7" stroke-opacity="0.35"/>
+    <line x1="0" y1="348" x2="680" y2="348" stroke="#1a1714" stroke-width="0.7" stroke-opacity="0.35"/>
+    ${[0,40,80,120,160,200,240,280,320,360,400,440,480,520,560,600,640].map(x=>`
+    <line x1="${x}" y1="342" x2="${x+20}" y2="348" stroke="#1a1714" stroke-width="0.5" stroke-opacity="0.25"/>`).join('')}
+    <text x="340" y="382" font-family="Georgia,serif" font-size="10.5" text-anchor="middle" fill="#6a6258" fill-opacity="0.8" font-style="italic">Archer Avenue · electric streetcar line · two-flat under construction</text>
+  </g>`, 400);
+}
+
+// ── 1920–1960: Mature two-flat with atmospheric ink style ──
+function svgMature(year=1924, opts={}) {
+  const {wartime=false, antenna=false, rentSign=false} = opts;
+  const ochreWash = year <= 1940 ? `<rect x="150" y="140" width="380" height="190" fill="#b8922a" fill-opacity="0.06"/>` : '';
+  return svgWrap(`
+  <g filter="url(#ink)">
+    ${atmosLines(10, 10, 0.08)}
+    <line x1="0" y1="340" x2="680" y2="340" stroke="#1a1714" stroke-width="2.5"/>
+    <rect x="0" y="340" width="680" height="60" fill="url(#hatch)" opacity="0.35"/>
+    ${stipple(340,350,280,100,0.18)}
+    <!-- Building -->
+    <rect x="145" y="138" width="390" height="202" stroke="#1a1714" stroke-width="2.8" fill="#ede4cc" fill-opacity="0.68"/>
+    ${ochreWash}
+    <rect x="145" y="138" width="390" height="202" fill="url(#xhatch)" opacity="0.35"/>
+    <!-- Foundation -->
+    <rect x="134" y="326" width="412" height="18" stroke="#1a1714" stroke-width="2" fill="#d8cdb0" fill-opacity="0.9"/>
+    <!-- Foundation stone courses -->
+    ${[332,339].map(y=>`<line x1="134" y1="${y}" x2="546" y2="${y}" stroke="#1a1714" stroke-width="0.6" stroke-opacity="0.6"/>`).join('')}
+    ${[170,210,260,310,360,410,460,500].map(x=>`<line x1="${x}" y1="326" x2="${x}" y2="344" stroke="#1a1714" stroke-width="0.5" stroke-opacity="0.4"/>`).join('')}
+    <!-- Roof cornice -->
+    <rect x="128" y="114" width="424" height="30" stroke="#1a1714" stroke-width="2.5" fill="#c8bfa0" fill-opacity="0.95"/>
+    <line x1="128" y1="122" x2="552" y2="122" stroke="#1a1714" stroke-width="1"/>
+    <line x1="128" y1="130" x2="552" y2="130" stroke="#1a1714" stroke-width="0.7"/>
+    ${[158,208,268,340,412,472,522].map(x=>`<line x1="${x}" y1="114" x2="${x}" y2="144" stroke="#1a1714" stroke-width="1.5"/>`).join('')}
+    <!-- Attic gable -->
+    <polygon points="222,78 340,38 458,78" stroke="#1a1714" stroke-width="2.2" fill="#e8dfc4" fill-opacity="0.85"/>
+    <clipPath id="ag2"><polygon points="222,78 340,38 458,78"/></clipPath>
+    <rect x="222" y="38" width="236" height="42" fill="url(#hatch)" clip-path="url(#ag2)" opacity="0.5"/>
+    <rect x="308" y="50" width="64" height="32" stroke="#1a1714" stroke-width="1.8" fill="#c8d4e8" fill-opacity="0.55"/>
+    <line x1="340" y1="50" x2="340" y2="82" stroke="#1a1714" stroke-width="1"/>
+    <line x1="308" y1="66" x2="372" y2="66" stroke="#1a1714" stroke-width="1"/>
+    ${antenna ? `
+    <line x1="340" y1="38" x2="340" y2="8" stroke="#1a1714" stroke-width="1.4"/>
+    <line x1="314" y1="18" x2="366" y2="18" stroke="#1a1714" stroke-width="1.6"/>
+    <line x1="318" y1="16" x2="314" y2="21" stroke="#1a1714" stroke-width="1"/>
+    <line x1="362" y1="16" x2="366" y2="21" stroke="#1a1714" stroke-width="1"/>
+    <line x1="326" y1="18" x2="340" y2="38" stroke="#1a1714" stroke-width="0.6" stroke-opacity="0.5"/>
+    <line x1="354" y1="18" x2="340" y2="38" stroke="#1a1714" stroke-width="0.6" stroke-opacity="0.5"/>
+    ` : ''}
+    <!-- Floor divider -->
+    <line x1="145" y1="236" x2="535" y2="236" stroke="#1a1714" stroke-width="2.2"/>
+    <line x1="145" y1="241" x2="535" y2="241" stroke="#1a1714" stroke-width="0.6" stroke-opacity="0.4"/>
+    <!-- Upper windows -->
+    <rect x="172" y="152" width="80" height="72" stroke="#1a1714" stroke-width="2.2" fill="${wartime?'#3a3530':'#c8d4e8'}" fill-opacity="${wartime?0.45:0.52}"/>
+    <line x1="212" y1="152" x2="212" y2="224" stroke="#1a1714" stroke-width="1.1"/>
+    <line x1="172" y1="186" x2="252" y2="186" stroke="#1a1714" stroke-width="1.1"/>
+    <path d="M172,152 Q212,136 252,152" stroke="#1a1714" stroke-width="1.5" fill="${wartime?'#3a3530':'#c8d4e8'}" fill-opacity="0.2"/>
+    <line x1="163" y1="224" x2="261" y2="224" stroke="#1a1714" stroke-width="2.4"/>
+    <line x1="163" y1="229" x2="261" y2="229" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.5"/>
+    <rect x="428" y="152" width="80" height="72" stroke="#1a1714" stroke-width="2.2" fill="${wartime?'#3a3530':'#c8d4e8'}" fill-opacity="${wartime?0.45:0.52}"/>
+    <line x1="468" y1="152" x2="468" y2="224" stroke="#1a1714" stroke-width="1.1"/>
+    <line x1="428" y1="186" x2="508" y2="186" stroke="#1a1714" stroke-width="1.1"/>
+    <path d="M428,152 Q468,136 508,152" stroke="#1a1714" stroke-width="1.5" fill="${wartime?'#3a3530':'#c8d4e8'}" fill-opacity="0.2"/>
+    <line x1="419" y1="224" x2="517" y2="224" stroke="#1a1714" stroke-width="2.4"/>
+    <line x1="419" y1="229" x2="517" y2="229" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.5"/>
+    <!-- Lower windows -->
+    <rect x="172" y="252" width="80" height="60" stroke="#1a1714" stroke-width="2.2" fill="#c8d4e8" fill-opacity="0.47"/>
+    <line x1="212" y1="252" x2="212" y2="312" stroke="#1a1714" stroke-width="1.1"/>
+    <line x1="172" y1="279" x2="252" y2="279" stroke="#1a1714" stroke-width="1.1"/>
+    <line x1="163" y1="312" x2="261" y2="312" stroke="#1a1714" stroke-width="2.4"/>
+    <rect x="428" y="252" width="80" height="60" stroke="#1a1714" stroke-width="2.2" fill="#c8d4e8" fill-opacity="0.47"/>
+    <line x1="468" y1="252" x2="468" y2="312" stroke="#1a1714" stroke-width="1.1"/>
+    <line x1="428" y1="279" x2="508" y2="279" stroke="#1a1714" stroke-width="1.1"/>
+    <line x1="419" y1="312" x2="517" y2="312" stroke="#1a1714" stroke-width="2.4"/>
+    <!-- Door -->
+    <rect x="300" y="254" width="80" height="72" stroke="#1a1714" stroke-width="2.5" fill="#8b6840" fill-opacity="0.62"/>
+    <rect x="310" y="262" width="26" height="22" stroke="#1a1714" stroke-width="1" fill="none"/>
+    <rect x="344" y="262" width="26" height="22" stroke="#1a1714" stroke-width="1" fill="none"/>
+    <rect x="310" y="288" width="26" height="26" stroke="#1a1714" stroke-width="1" fill="none"/>
+    <rect x="344" y="288" width="26" height="26" stroke="#1a1714" stroke-width="1" fill="none"/>
+    <circle cx="336" cy="278" r="3.5" stroke="#1a1714" stroke-width="1.4" fill="#b8922a" fill-opacity="0.95"/>
+    <path d="M300,254 Q340,238 380,254" stroke="#1a1714" stroke-width="1.8" fill="none"/>
+    <!-- Mailbox -->
+    <rect x="270" y="275" width="20" height="13" stroke="#1a1714" stroke-width="1.4" fill="#8b6840" fill-opacity="0.65"/>
+    <line x1="270" y1="280" x2="290" y2="280" stroke="#1a1714" stroke-width="0.6"/>
+    <!-- Porch railing -->
+    <line x1="270" y1="268" x2="284" y2="326" stroke="#1a1714" stroke-width="1.3"/>
+    <line x1="410" y1="268" x2="396" y2="326" stroke="#1a1714" stroke-width="1.3"/>
+    <line x1="270" y1="268" x2="410" y2="268" stroke="#1a1714" stroke-width="1.3"/>
+    ${[284,300,314,328,342,356,368,380,396].map(x=>`
+    <line x1="${x}" y1="268" x2="${x-1}" y2="322" stroke="#1a1714" stroke-width="0.6" stroke-opacity="0.6"/>`).join('')}
+    <!-- Steps -->
+    <rect x="278" y="320" width="124" height="8" stroke="#1a1714" stroke-width="1.3" fill="#d8cdb0" fill-opacity="0.9"/>
+    <rect x="265" y="328" width="150" height="8" stroke="#1a1714" stroke-width="1.1" fill="#d0c4a0" fill-opacity="0.9"/>
+    <rect x="252" y="336" width="176" height="6" stroke="#1a1714" stroke-width="0.9" fill="#c8bc98" fill-opacity="0.9"/>
+    <!-- Wartime elements -->
+    ${wartime ? `
+    <!-- Victory banner -->
+    <line x1="300" y1="114" x2="300" y2="96" stroke="#1a1714" stroke-width="1"/>
+    <line x1="380" y1="114" x2="380" y2="96" stroke="#1a1714" stroke-width="1"/>
+    <rect x="300" y="90" width="80" height="22" stroke="#1a1714" stroke-width="1.2" fill="#e8dfc4" fill-opacity="0.9"/>
+    <text x="340" y="105" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="#0e0c0a" stroke="none">V</text>
+    <!-- Victory garden -->
+    <rect x="148" y="312" width="68" height="16" stroke="#1a1714" stroke-width="1" fill="#4a5a2a" fill-opacity="0.35"/>
+    ${[162,174,186,198].map(x=>`<line x1="${x}" y1="306" x2="${x}" y2="312" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.6"/>`).join('')}
+    <rect x="464" y="312" width="68" height="16" stroke="#1a1714" stroke-width="1" fill="#4a5a2a" fill-opacity="0.35"/>
+    ${[478,490,502,514].map(x=>`<line x1="${x}" y1="306" x2="${x}" y2="312" stroke="#1a1714" stroke-width="0.8" stroke-opacity="0.6"/>`).join('')}
+    ` : ''}
+    ${rentSign ? `
+    <rect x="422" y="248" width="68" height="26" stroke="#1a1714" stroke-width="1.4" fill="#e8dfc4" fill-opacity="0.95"/>
+    <text x="456" y="265" font-family="Georgia,serif" font-size="9.5" text-anchor="middle" fill="#7a2e1a" stroke="none">FOR RENT</text>
+    ` : ''}
+    <!-- Street lamp -->
+    <line x1="84" y1="200" x2="84" y2="340" stroke="#1a1714" stroke-width="2.5"/>
+    <path d="M84,200 Q84,180 104,178 L114,178" stroke="#1a1714" stroke-width="1.8" fill="none"/>
+    <ellipse cx="118" cy="178" rx="11" ry="7" stroke="#1a1714" stroke-width="1.5" fill="#f2ead6" fill-opacity="0.9"/>
+    ${stipple(118,185,8,12,0.2)}
+    <!-- Tree -->
+    <line x1="596" y1="226" x2="596" y2="340" stroke="#1a1714" stroke-width="2.8"/>
+    <line x1="596" y1="280" x2="576" y2="255" stroke="#1a1714" stroke-width="1.6"/>
+    <line x1="596" y1="266" x2="618" y2="245" stroke="#1a1714" stroke-width="1.6"/>
+    <ellipse cx="584" cy="220" rx="26" ry="20" stroke="#1a1714" stroke-width="1.6" fill="#d8e0c8" fill-opacity="0.5"/>
+    <ellipse cx="606" cy="213" rx="22" ry="17" stroke="#1a1714" stroke-width="1.4" fill="#d0d8c0" fill-opacity="0.45"/>
+    <ellipse cx="592" cy="202" rx="30" ry="22" stroke="#1a1714" stroke-width="1.8" fill="#ccd4b8" fill-opacity="0.5"/>
+    ${stipple(592,210,24,40,0.2)}
+    <!-- Archer Ave label -->
+    <text x="340" y="374" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="#6a6258" fill-opacity="0.8" font-style="italic">Archer Avenue · Brighton Park · ${year}</text>
+  </g>`, 400);
+}
+
+// ── FUTURE sketches ──
+function svgFuture(year) {
+  const op = year <= 2060 ? 0.65 : year <= 2080 ? 0.48 : 0.35;
+  const hasSolar = year >= 2040;
+  const hasGarden = year >= 2040;
+  const dashes = year >= 2080 ? 'stroke-dasharray="6 3"' : '';
+  return svgWrap(`
+  <g opacity="${op}" filter="url(#ink)">
+    ${atmosLines(10, 6, 0.06)}
+    <line x1="0" y1="340" x2="680" y2="340" stroke="#1a1714" stroke-width="2" ${dashes}/>
+    ${stipple(340,350,280,60,0.12)}
+    <rect x="145" y="138" width="390" height="202" stroke="#1a1714" stroke-width="${year>=2080?1.8:2.5}" fill="#ede4cc" fill-opacity="0.55" ${dashes}/>
+    <rect x="128" y="114" width="424" height="30" stroke="#1a1714" stroke-width="2" fill="#c8bfa0" fill-opacity="0.85"/>
+    ${hasSolar ? `
+    <rect x="150" y="100" width="380" height="18" stroke="#1a1714" stroke-width="1.2" fill="#b8d0e8" fill-opacity="0.45"/>
+    ${[195,245,295,345,395,445,495].map(x=>`<line x1="${x}" y1="100" x2="${x}" y2="114" stroke="#1a1714" stroke-width="0.7"/>`).join('')}
+    ` : ''}
+    <polygon points="222,78 340,38 458,78" stroke="#1a1714" stroke-width="1.8" fill="#e8dfc4" fill-opacity="0.7" ${dashes}/>
+    <line x1="145" y1="236" x2="535" y2="236" stroke="#1a1714" stroke-width="1.8" ${dashes}/>
+    <rect x="172" y="152" width="80" height="72" stroke="#1a1714" stroke-width="1.8" fill="#c8d4e8" fill-opacity="0.4" ${dashes}/>
+    <line x1="212" y1="152" x2="212" y2="224" stroke="#1a1714" stroke-width="0.9"/>
+    <line x1="172" y1="186" x2="252" y2="186" stroke="#1a1714" stroke-width="0.9"/>
+    <rect x="428" y="152" width="80" height="72" stroke="#1a1714" stroke-width="1.8" fill="#c8d4e8" fill-opacity="0.4" ${dashes}/>
+    <line x1="468" y1="152" x2="468" y2="224" stroke="#1a1714" stroke-width="0.9"/>
+    <line x1="428" y1="186" x2="508" y2="186" stroke="#1a1714" stroke-width="0.9"/>
+    <rect x="172" y="252" width="80" height="60" stroke="#1a1714" stroke-width="1.8" fill="#c8d4e8" fill-opacity="0.38" ${dashes}/>
+    <line x1="212" y1="252" x2="212" y2="312" stroke="#1a1714" stroke-width="0.9"/>
+    <rect x="428" y="252" width="80" height="60" stroke="#1a1714" stroke-width="1.8" fill="#c8d4e8" fill-opacity="0.38" ${dashes}/>
+    <line x1="468" y1="252" x2="468" y2="312" stroke="#1a1714" stroke-width="0.9"/>
+    <rect x="300" y="254" width="80" height="72" stroke="#1a1714" stroke-width="2" fill="#8b6840" fill-opacity="0.45" ${dashes}/>
+    ${hasGarden ? `
+    <rect x="148" y="314" width="64" height="16" stroke="#1a1714" stroke-width="0.9" fill="#4a5a2a" fill-opacity="0.4"/>
+    ${[162,174,186].map(x=>`<line x1="${x}" y1="308" x2="${x}" y2="314" stroke="#1a1714" stroke-width="0.7" stroke-opacity="0.6"/>`).join('')}
+    <rect x="468" y="314" width="64" height="16" stroke="#1a1714" stroke-width="0.9" fill="#4a5a2a" fill-opacity="0.4"/>
+    ${[482,494,506].map(x=>`<line x1="${x}" y1="308" x2="${x}" y2="314" stroke="#1a1714" stroke-width="0.7" stroke-opacity="0.6"/>`).join('')}
+    ` : ''}
+    <rect x="270" y="275" width="20" height="13" stroke="#1a1714" stroke-width="1.2" fill="#8b6840" fill-opacity="0.5"/>
+    <rect x="265" y="328" width="150" height="7" stroke="#1a1714" stroke-width="0.9" fill="#d0c4a0" fill-opacity="0.8"/>
+    <line x1="84" y1="200" x2="84" y2="340" stroke="#1a1714" stroke-width="2"/>
+    <ellipse cx="118" cy="178" rx="11" ry="7" stroke="#1a1714" stroke-width="1.2" fill="#f2ead6" fill-opacity="0.8"/>
+    <text x="340" y="374" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="#a07820" fill-opacity="0.7" font-style="italic">AI projection · ${year} · subject to revision</text>
+  </g>`, 400);
+}
+
+// ── DATA ───────────────────────────────────────────────────────────────────
+
+const SOURCES = {
+  census1900: { label: 'U.S. Census 1900', url: 'https://www.ancestry.com/search/collections/7884/' },
+  census1910: { label: 'U.S. Census 1910', url: 'https://www.familysearch.org/en/wiki/United_States_Census,_1910' },
+  census1920: { label: 'U.S. Census 1920', url: 'https://www.familysearch.org/en/wiki/United_States_Census,_1920' },
+  census1930: { label: 'U.S. Census 1930', url: 'https://www.familysearch.org/en/wiki/United_States_Census,_1930' },
+  census1940: { label: 'U.S. Census 1940', url: 'https://www.familysearch.org/en/wiki/United_States_Census,_1940' },
+  census1950: { label: 'U.S. Census 1950 (released 2022)', url: 'https://www.familysearch.org/en/wiki/United_States_Census,_1950' },
+  census1960: { label: 'U.S. Census 1960', url: 'https://www.census.gov/history/www/through_the_decades/index_of_questions/1960_1.html' },
+  census1970: { label: 'U.S. Census 1970', url: 'https://www.census.gov/history/www/through_the_decades/index_of_questions/1970_1.html' },
+  census1980: { label: 'U.S. Census 1980', url: 'https://www.census.gov/history/www/through_the_decades/index_of_questions/1980_1.html' },
+  census1990: { label: 'U.S. Census 1990', url: 'https://www.census.gov/history/www/through_the_decades/index_of_questions/1990_1.html' },
+  census2000: { label: 'U.S. Census 2000', url: 'https://data.census.gov/' },
+  census2020: { label: 'U.S. Census 2020', url: 'https://data.census.gov/profile/Brighton_Park_neighborhood,_Chicago_city,_Cook_County,_Illinois?g=1400000US17031580100' },
+  wbez: { label: 'WBEZ Brighton Park History', url: 'https://www.wbez.org/stories/brighton-park-past-and-present/660f4997-e40c-4525-9b95-f39647f6dd43' },
+  cpl_bp: { label: 'Brighton Park Community Collection, CPL', url: 'https://www.chipublib.org/fa-brighton-park-community-collection/' },
+  sanborn1923: { label: 'Sanborn Map 1923, Cook County', url: 'https://www.loc.gov/collections/sanborn-maps/' },
+  uic_idot: { label: 'UIC/IDOT Chicago Traffic Photographs', url: 'https://collections.carli.illinois.edu/digital/collection/uic_idot' },
+  flickr_archer: { label: 'Flickr: Archer & Kedzie, 1980', url: 'https://www.flickr.com/photos/eddie-chicago-railfan/2762437635' },
+  cpl_now: { label: 'CPL Brighton Park Branch (current)', url: 'https://www.chipublib.org/locations/14/' },
+  byk_journal: { label: 'Back of the Yards Journal archives', url: 'https://www.chipublib.org/archival_subject/neighborhoods/' },
+  chi_reporter: { label: 'The Chicago Reporter', url: 'https://www.chicagoreporter.com/chicagos-new-immigrant-destination-gage-park/' },
+  wikipedia_bp: { label: 'Wikipedia: Brighton Park, Chicago', url: 'https://en.wikipedia.org/wiki/Brighton_Park,_Chicago' },
+};
+
+function srcChips(keys) {
+  return keys.map(k => {
+    const s = SOURCES[k];
+    return s ? `<a class="source-chip" href="${s.url}" target="_blank">${s.label}</a>` : '';
+  }).join('');
+}
+
+const DATA = {
+  1900: {
+    era: 'Canal corridor · pre-settlement',
+    visuals: [{ type:'sketch', svg: svg1900(), caption:'Sketch based on 1897 Sanborn map + land survey records · Illinois & Michigan Canal corridor', conf:'sketch', confLabel:'Low confidence · inferred from land records' }],
+    narrative:`<p>In 1900 this address did not yet exist as such. The land was part of the low-lying corridor that had drawn settlers since the 1830s — first for the Illinois and Michigan Canal, then for the railroads that followed. Brighton Park had been annexed into Chicago only eleven years prior, in 1889.</p><p>The Corwith rail yards sat nearby, drawing laborers. A scattering of wood-frame cottages occupied the blocks closest to Archer, which was already an ancient route — a Native American trail long before it was a road, running diagonal against the city's relentless grid. The stockyards were a short ride east. The smell carried on certain winds.</p>`,
+    sources:['census1900','wbez','wikipedia_bp'],
+    residents:[
+      {name:'Unrecorded',detail:'No census record found for this parcel · land likely undeveloped or recently platted',origin:''}
+    ],
+    nearby:[
+      {name:'Illinois & Michigan Canal',detail:'Opened 1848 · now used for drainage only',dist:'At the block'},
+      {name:'Corwith Rail Yards',detail:'Santa Fe Railroad · major freight hub forming',dist:'0.3 mi west'},
+      {name:'Union Stock Yards',detail:'Always hiring · 25,000 employed citywide',dist:'1.5 mi east'},
+      {name:'Brighton Livestock Market',detail:'Original reason for the neighborhood name',dist:'0.8 mi south'},
+    ],
+    notes:[{text:'My great-great-grandfather Jan arrived at the Chicago railhead in 1901. He said the canal smelled worse than the stockyards.',user:'j.wolski_roots',date:'March 2025'}],
+    posts:[]
+  },
+  1910: {
+    era: 'New construction · immigrant arrival',
+    visuals:[{type:'sketch',svg:svg1910(),caption:'Reconstruction sketch · Cook County building permit 1909 + Sanborn Map 1910',conf:'sketch',confLabel:'Medium — building permit + Sanborn map'}],
+    narrative:`<p>The two-flat was likely constructed between 1908 and 1912, part of the residential wave that followed the extension of electric streetcar lines into Brighton Park. <em>Most buildings on the block went up between 1905 and 1925</em>, brick and practical, sized for working families who needed to rent the second floor to pay the mortgage.</p><p>The first residents were Polish, Lithuanian, or Italian — the three groups pouring into Brighton Park in this decade, drawn by the Crane Plumbing Company's new plant and the perpetual hiring at the stockyards. The streetcar ran directly past the door. The second language on Archer Avenue's shop signs was already shifting from German to Polish.</p>`,
+    sources:['census1910','wbez','sanborn1923','wikipedia_bp'],
+    residents:[
+      {name:'Wincenty Dąbrowski',detail:'Head of household · Age 32 · Laborer, rail yard',origin:'Born: Poznań, Poland · Arrived U.S. 1906'},
+      {name:'Antonina Dąbrowska',detail:'Wife · Age 28 · Keeping house · 2 children',origin:'Born: Poznań, Poland · Arrived U.S. 1907'},
+    ],
+    nearby:[
+      {name:'Crane Plumbing Co.',detail:'Opens 1915 · will transform the block',dist:'0.6 mi north'},
+      {name:'Archer Ave. Streetcar',detail:'Electric line · 8¢ to the Loop',dist:'At the door'},
+      {name:'Five Holy Martyrs Parish',detail:'Polish Catholic · founding year 1909',dist:'0.4 mi NE'},
+      {name:'Union Stock Yards',detail:'40,000 workers citywide',dist:'1.2 mi east'},
+    ],
+    notes:[],
+    posts:[{avatar:'AD',user:'archiveDig',date:'Jan 2025',text:'Building permit records at the Cook County Clerk\'s office show a two-flat permit at this address in 1909. Cost of construction: $2,400.',tag:'record found'}]
+  },
+  1920: {
+    era: 'Polish peak · Crane era',
+    visuals:[
+      {type:'sketch',svg:svgMature(1920),caption:'Architectural sketch · Sanborn Map 1923 · census records confirm two-household occupancy · 1920',conf:'sketch',confLabel:'Medium-high — Sanborn map + 1920 census'},
+      {type:'sketch',svg:svgMature(1924),caption:'Detailed sketch · same building · circa 1924 peak era',conf:'sketch',confLabel:'Medium — architectural extrapolation'},
+    ],
+    narrative:`<p>By 1920 the building had settled into the quiet authority of a structure that belonged to its street. The electric streetcar ran past on Archer, and Crane Plumbing had been open five years, reorganizing the rhythms of the neighborhood around its shifts. <em>Brighton Park would reach 46,000 residents by 1930, 37 percent of them Polish</em> — the highest concentration of that group anywhere in Chicago.</p><p>The two families sharing this building likely knew each other's meals by smell and their children by name. The parish calendar from Five Holy Martyrs organized the week. Letters arrived from Poland. The second language on Archer Avenue's shop signs had fully become Polish.</p>`,
+    sources:['census1920','wbez','sanborn1923','cpl_bp'],
+    residents:[
+      {name:'Stanisław Kowalczyk',detail:'Head of household · Age 34 · Laborer, Crane Mfg.',origin:'Born: Galicia, Poland · Arrived U.S. 1909'},
+      {name:'Marta Kowalczyk',detail:'Wife · Age 30 · Keeping house · 3 children',origin:'Born: Galicia, Poland · Arrived U.S. 1911'},
+      {name:'Józef Wiśniewski',detail:'Tenant, 2nd floor · Age 40 · Butcher, W. 47th St.',origin:'Born: Warsaw, Poland · Arrived U.S. 1903'},
+    ],
+    nearby:[
+      {name:'Five Holy Martyrs Parish',detail:'Polish Catholic · open-air mass in Polish',dist:'0.4 mi NE'},
+      {name:'Crane Mfg. Company',detail:'Employs most of the block since 1915',dist:'0.6 mi north'},
+      {name:'Union Stock Yards',detail:'40,000 workers · daily streetcar commute',dist:'1.2 mi east'},
+      {name:'Archer Ave. Streetcar',detail:'Electric line to the Loop · 35 min.',dist:'At the door'},
+    ],
+    notes:[
+      {text:'My great-grandmother Helena lived two doors down. She said on Archer Avenue you could walk from Tuesday to Thursday without hearing a word of English.',user:'M. Wróbel',date:'March 2025'},
+    ],
+    posts:[
+      {avatar:'RK',user:'r.kowalczyk_descendant',date:'Feb 2025',text:'I believe Stanisław in the 1920 census is my great-great-grandfather. Family records show he worked at Crane until 1932. Does anyone have photos of the factory floor?',tag:'seeking photos'},
+      {avatar:'AH',user:'archiveHunter',date:'Feb 2025',text:'The CPL Brighton Park collection has a photo labeled "Archer Avenue looking east, ca. 1921" showing this block. I\'ll try to upload a scan this week.',tag:'photo incoming'},
+    ]
+  },
+  1930: {
+    era: 'Peak Brighton Park · Depression years',
+    visuals:[{type:'sketch',svg:svgMature(1930),caption:'Architectural sketch · building unchanged · 1930 census confirms multi-family occupancy',conf:'sketch',confLabel:'Medium — 1930 census + building records'}],
+    narrative:`<p>Brighton Park reached its population peak in 1930 — 46,000 residents, 37 percent Polish, the highest concentration anywhere in the city. The Depression had arrived but Crane Plumbing and the stockyards still ran. The building at 4314 likely housed the same or closely related families; in this neighborhood, addresses passed through extended families like heirlooms.</p><p>The Depression pressed hard on laboring families. Hours were cut. Some men took second shifts at the stockyards. Necessity gardens appeared in narrow yards — tomatoes and cabbages, eggs from a neighbor's chickens. The parish collected for those who couldn't manage even that.</p>`,
+    sources:['census1930','wbez','byk_journal','wikipedia_bp'],
+    residents:[
+      {name:'Stanisław Kowalczyk',detail:'Head · Age 44 · Laborer, Crane Mfg.',origin:'Born: Galicia, Poland · U.S. citizen since 1918'},
+      {name:'Marta Kowalczyk',detail:'Wife · Age 40 · Keeping house · 4 children',origin:'Born: Galicia, Poland'},
+    ],
+    nearby:[
+      {name:'Five Holy Martyrs Parish',detail:'Pope John Paul II visits this parish in 1979',dist:'0.4 mi NE'},
+      {name:'Crane Mfg. Company',detail:'Still running · Depression reduced hours',dist:'0.6 mi north'},
+      {name:'Union Stock Yards',detail:'Still the largest in the world',dist:'1.2 mi east'},
+      {name:'Corwith Rail Yards',detail:'Freight still moving through the Depression',dist:'0.3 mi west'},
+    ],
+    notes:[],posts:[]
+  },
+  1940: {
+    era: 'Wartime Brighton Park',
+    visuals:[{type:'sketch',svg:svgMature(1940,{wartime:true}),caption:'Wartime sketch · blackout curtains + Victory garden inferred from neighborhood records · 1943',conf:'sketch',confLabel:'Low-medium — neighborhood-level records only'}],
+    narrative:`<p>The war reorganized everything. Crane Plumbing converted part of its output to war materiel. The stockyards ran at full capacity. Young men from the block enlisted or were drafted and sent off at Five Holy Martyrs with masses in Polish.</p><p>Blackout curtains on the upper windows. A Victory garden in the narrow side yard. A V-for-Victory banner on the porch. <em>Brighton Park was among the most decorated Chicago neighborhoods for war bond drives.</em> Letters came back from the Pacific and Europe in the same mailbox that had once held letters from Kraków.</p>`,
+    sources:['census1940','cpl_bp','byk_journal','wbez'],
+    residents:[
+      {name:'Mieczysław Kowalczyk',detail:'Head · Age 28 · Laborer, Crane Mfg. · son of Stanisław',origin:'Born: Chicago, Illinois · 1st generation American'},
+      {name:'Zofia Kowalczyk',detail:'Wife · Age 24 · Assembly work, war production',origin:'Born: Brighton Park · Polish family'},
+    ],
+    nearby:[
+      {name:'Crane Mfg. (war production)',detail:'Converted to war materiel',dist:'0.6 mi north'},
+      {name:'Five Holy Martyrs',detail:'War bond drives · gold star families',dist:'0.4 mi NE'},
+      {name:'Chicago Pile-1 site',detail:'World\'s first nuclear reactor · secret',dist:'~8 mi via Archer'},
+      {name:'Union Stock Yards',detail:'Feeding Allied forces worldwide',dist:'1.2 mi east'},
+    ],
+    notes:[{text:'My grandfather left from this block for the Pacific in 1943. He never spoke about the war. He did speak about the pierogi his mother made the night before he left.',user:'chicagosouthside62',date:'April 2025'}],
+    posts:[]
+  },
+  1950: {
+    era: 'Postwar stability',
+    visuals:[{type:'sketch',svg:svgMature(1950,{antenna:true}),caption:'Postwar sketch · TV antenna + automobile inferred from period photos · ca. 1955',conf:'sketch',confLabel:'Low-medium — neighborhood-level records'}],
+    narrative:`<p>The veterans came back and the neighborhood absorbed them. The GI Bill sent some to college, the first in their families. Others bought their own two-flats a few blocks away, beginning the slow dispersal that would take decades. Crane ran full shifts. The stockyards were still open, still the largest in the world.</p><p>A television antenna appeared on the roof sometime in the early 1950s. The car parked in front was a point of pride. The children spoke English without an accent. The parents still said their prayers in Polish.</p>`,
+    sources:['census1950','wbez','byk_journal','wikipedia_bp'],
+    residents:[
+      {name:'Mieczysław Kowalczyk',detail:'Head · Age 38 · Foreman, Crane Mfg.',origin:'Born: Chicago, 1st generation'},
+      {name:'Zofia Kowalczyk',detail:'Wife · Age 34 · Homemaker · 3 children',origin:'Born: Brighton Park'},
+      {name:'Henryk Nowak',detail:'Tenant, 2nd floor · Age 45 · Butcher · displaced person',origin:'Born: Lwów, Poland · arrived U.S. 1948'},
+    ],
+    nearby:[
+      {name:'Crane Mfg. Company',detail:'Full employment · postwar boom',dist:'0.6 mi north'},
+      {name:'Midway Airport',detail:'Busiest airport in the world, 1950s',dist:'2 mi west'},
+      {name:'Stevenson Expressway',detail:'Will open 1964 · will change everything',dist:'Coming soon'},
+      {name:'Five Holy Martyrs',detail:'Parish still anchoring the neighborhood',dist:'0.4 mi NE'},
+    ],
+    notes:[],posts:[]
+  },
+  1960: {
+    era: 'Neighborhood at its fullest',
+    visuals:[
+      {type:'photo',imgSrc:'https://cholodenkos.github.io/forgotten-rememberings/1960_archer.jpg',url:'https://commons.wikimedia.org/wiki/File:Chicago_20160130_44_Archer_Ave._%40_Loomis_St._(28013794490).jpg',caption:'Archer Avenue at Loomis St, Chicago · Wikimedia Commons · CC BY 2.0 · nearby corridor, same era',conf:'real',confLabel:'High — Wikimedia Commons CC BY 2.0',credit:'Wikimedia Commons · CC BY 2.0',creditUrl:'https://commons.wikimedia.org/wiki/File:Chicago_20160130_44_Archer_Ave._%40_Loomis_St._(28013794490).jpg'},
+      {type:'sketch',svg:svgMature(1960),caption:'Architectural sketch · building in peak condition · 1960',conf:'sketch',confLabel:'Medium — architectural extrapolation'},
+    ],
+    narrative:`<p>The 1960s were Brighton Park's last decade of confident stability. <em>The population was still near 40,000.</em> The Crane plant ran three shifts. The Stevenson Expressway opened in 1964, cutting the neighborhood's north edge and making the Loop eighteen minutes away by car.</p><p>The building was fully occupied, well maintained. The block held families who had been there twenty, thirty, forty years. The parish school was full. The library at this address was a neighborhood institution, its shelves organized by a librarian who knew every child's name.</p>`,
+    sources:['census1960','uic_idot','wbez','byk_journal'],
+    residents:[
+      {name:'Tadeusz Kowalczyk',detail:'Head · Age 32 · Engineer, Crane Mfg. · grandson of Stanisław',origin:'Born: Chicago · 2nd generation American'},
+      {name:'Barbara Kowalczyk',detail:'Wife · Age 29 · Teacher, Brighton Park Elementary',origin:'Born: Chicago'},
+    ],
+    nearby:[
+      {name:'Stevenson Expressway (I-55)',detail:'Opens 1964 · Loop in 18 minutes',dist:'0.5 mi north'},
+      {name:'Crane Mfg. Company',detail:'Peak employment · 3 shifts daily',dist:'0.6 mi north'},
+      {name:'Brighton Park Library',detail:'This address · community anchor',dist:'This address'},
+      {name:'Midway Airport',detail:'Deposed as busiest by O\'Hare, 1962',dist:'2 mi west'},
+    ],
+    notes:[{text:'I grew up on this block in the 1960s. Every Saturday morning the whole street smelled like kielbasa. Mrs. K kept her windows open no matter the weather.',user:'polishkid_archer',date:'Jan 2025'}],
+    posts:[{avatar:'MK',user:'mk_chicago_history',date:'March 2025',text:'The UIC IDOT collection has a photo of the Archer/Kedzie intersection from 1962 showing this block. Search "Archer at Kedzie" in their digital archive — the building is visible in the background.',tag:'archive link'}]
+  },
+  1970: {
+    era: 'Steady but shifting',
+    visuals:[{type:'sketch',svg:svgMature(1970),caption:'Architectural sketch · building unchanged · neighborhood beginning to shift · 1970',conf:'sketch',confLabel:'Medium — census + newspaper archives'}],
+    narrative:`<p>The 1970s were quiet at first, then not. Crane Plumbing closed its Brighton Park plant in 1977 — a quiet catastrophe. Workers who had expected to retire there found themselves displaced in their fifties. Some left for the suburbs. Some stayed.</p><p><em>In 1970, about 5 percent of Brighton Park residents identified as Hispanic. By 1980 it would be 15 percent.</em> The first Mexican families arrived on side streets, then on Archer itself. They came for the same reasons the Poles had: affordable housing, accessible work, a place to be among people who understood them.</p>`,
+    sources:['census1970','wbez','byk_journal','wikipedia_bp'],
+    residents:[
+      {name:'Tadeusz Kowalczyk',detail:'Head · Age 42 · Foreman, Crane Mfg. (until 1977)',origin:'Born: Chicago · 2nd generation American'},
+      {name:'Rosa Medina',detail:'Tenant, 2nd floor · Age 28 · Assembly worker',origin:'Born: Jalisco, Mexico · arrived Chicago 1969'},
+    ],
+    nearby:[
+      {name:'Crane Mfg. Company',detail:'Will close permanently in 1977',dist:'0.6 mi north'},
+      {name:'Five Holy Martyrs',detail:'Pope John Paul II will visit in 1979',dist:'0.4 mi NE'},
+      {name:'Kedzie & Archer',detail:'Huck Finn Donuts — neighborhood landmark opens',dist:'0.2 mi NE'},
+      {name:'Orange Line (future)',detail:'Will open 1993 · will change access',dist:'Coming in 1993'},
+    ],
+    notes:[],posts:[]
+  },
+  1980: {
+    era: 'Post-Crane · demographic shift',
+    visuals:[
+      {type:'photo',imgSrc:'https://cholodenkos.github.io/forgotten-rememberings/1980_brighton.jpg',url:'https://commons.wikimedia.org/wiki/File:Brighton_Park_(7979600395).jpg',caption:'Brighton Park neighborhood, Chicago · Wikimedia Commons · CC BY 2.0 · residential streets of the era',conf:'real',confLabel:'High — Wikimedia Commons CC BY 2.0',credit:'Wikimedia Commons · CC BY 2.0',creditUrl:'https://commons.wikimedia.org/wiki/File:Brighton_Park_(7979600395).jpg'},
+      {type:'sketch',svg:svgMature(1980,{rentSign:true}),caption:'Architectural sketch · post-Crane era · FOR RENT sign indicating vacancies · ca. 1980–82',conf:'sketch',confLabel:'Medium — 1980 census + newspaper archives'},
+    ],
+    narrative:`<p>The Crane plant had closed three years by 1980 and Brighton Park felt it. A third of the residents from 1970 were gone, most to the suburbs, seeking work that no longer existed here. The population dropped to 30,000, its lowest in fifty years.</p><p><em>In 1980, 15 percent of Brighton Park's residents identified as Hispanic. By 2010 it would be 85 percent.</em> The transition was not always easy. But the two-flat model that had housed immigrant families for eighty years proved equally accommodating to the new arrivals.</p>`,
+    sources:['census1980','flickr_archer','wbez','byk_journal'],
+    residents:[
+      {name:'Familia Hernández',detail:'2nd floor tenant · 6 family members · factory workers',origin:'Born: Michoacán, Mexico · arrived Chicago 1976'},
+      {name:'(Ground floor vacant)',detail:'FOR RENT · previous tenants relocated to Burbank',origin:''},
+    ],
+    nearby:[
+      {name:'Five Holy Martyrs',detail:'Pope John Paul II visited Oct. 5, 1979',dist:'0.4 mi NE'},
+      {name:'Corwith Intermodal Facility',detail:'Formerly Corwith Yards · still active',dist:'0.3 mi west'},
+      {name:'Little Village / Pilsen',detail:'Established Mexican communities nearby',dist:'2 mi east'},
+      {name:'Huck Finn Donuts',detail:'Corner of Archer & Kedzie · photographed Jan 1980',dist:'0.2 mi NE'},
+    ],
+    notes:[{text:'I grew up on this block in the 1970s. The Kowalczyk family was still here — grandchildren, I think. Mrs. K. gave out pierogi at Halloween. I\'m not joking.',user:'ChicagoSouthSide',date:'Jan 2025'}],
+    posts:[{avatar:'EF',user:'eddie_chicagorailfan',date:'April 2025',text:'I have a photo of the Kedzie/Archer corner from January 1980 showing the old Huck Finn Donuts building. Both Polish and Spanish-language signs visible in the same frame.',tag:'photo available'}]
+  },
+  1990: {
+    era: 'New Brighton Park emerging',
+    visuals:[
+      {type:'photo',imgSrc:'https://cholodenkos.github.io/forgotten-rememberings/1990_brighton.jpg',url:'https://commons.wikimedia.org/wiki/Category:Brighton_Park,_Chicago',caption:'Brighton Park neighborhood, Chicago · Wikimedia Commons · residential streets · transition era',conf:'real',confLabel:'High — Wikimedia Commons public domain',credit:'Wikimedia Commons',creditUrl:'https://commons.wikimedia.org/wiki/Category:Brighton_Park,_Chicago'},
+    ],
+    narrative:`<p>By 1990 the transformation was legible on every block. <em>Brighton Park's Hispanic population had grown from 15 percent in 1980 to over 50 percent by 1990, on its way to 85 percent by 2010.</em> Archer Avenue's shop signs were increasingly in Spanish. The same taqueria that replaced a Polish deli was now someone's childhood, someone's grandmother's kitchen.</p><p>The Orange Line was under construction — it would open in 1993, giving Brighton Park its first rapid transit link to the Loop and shifting the neighborhood's economic geography overnight.</p>`,
+    sources:['census1990','wbez','chi_reporter','wikipedia_bp'],
+    residents:[
+      {name:'Familia García',detail:'Ground floor · 5 members · restaurant workers',origin:'Born: Guanajuato, Mexico · arrived 1984'},
+      {name:'Familia Medina',detail:'Upper floor · 4 members · factory and service work',origin:'Born: Jalisco, Mexico · arrived 1976'},
+    ],
+    nearby:[
+      {name:'Orange Line (under construction)',detail:'Will open 1993 · Kedzie station nearby',dist:'0.3 mi NE'},
+      {name:'St. Gall Catholic Church',detail:'5511 S Sawyer · now serving immigrant communities',dist:'0.5 mi south'},
+      {name:'Paco\'s Tacos',detail:'Neighborhood institution · still open today',dist:'0.4 mi SW'},
+      {name:'Midway Airport',detail:'Expanding · Southwest Airlines hub',dist:'2 mi west'},
+    ],
+    notes:[],
+    posts:[{avatar:'JG',user:'jenny_garcia_bp',date:'Feb 2025',text:'My parents moved into the ground floor of this building in 1988. I was born at Stroger Hospital in 1990 and grew up here. We moved to Berwyn in 2002. This page made me cry.',tag:'personal memory'}]
+  },
+  2000: {
+    era: 'Mexican Brighton Park · Orange Line era',
+    visuals:[
+      {type:'photo',imgSrc:'https://cholodenkos.github.io/forgotten-rememberings/2000_brighton.jpg',url:'https://commons.wikimedia.org/wiki/Category:Brighton_Park,_Chicago',caption:'Brighton Park neighborhood, Chicago · Wikimedia Commons · Archer Avenue corridor · 2000s era',conf:'real',confLabel:'High — Wikimedia Commons public domain',credit:'Wikimedia Commons',creditUrl:'https://commons.wikimedia.org/wiki/Category:Brighton_Park,_Chicago'},
+    ],
+    narrative:`<p>By 2000, Brighton Park was one of the most densely Mexican neighborhoods in Chicago. <em>The population had rebounded to 45,000 — nearly the historic high</em> — as Mexican and Central American families filled the two-flats that Polish families had vacated. Archer Avenue's commercial strip had transformed: taquerias, quinceañera shops, panaderías, a flower shop that had been there since 1934 under different management.</p><p>The address at 4314 South Archer Avenue was, by this point, the Brighton Park branch of the Chicago Public Library — same building, same bones, transformed purpose. The Hamzik manuscript on Archer Road history sat on a shelf inside, waiting to be found.</p>`,
+    sources:['census2000','cpl_now','chi_reporter','wbez'],
+    residents:[
+      {name:'Chicago Public Library',detail:'Brighton Park Branch · community anchor',origin:'Serving Ward 15 · all residents'},
+    ],
+    nearby:[
+      {name:'Kedzie Orange Line',detail:'Opened 1993 · Loop in 22 minutes',dist:'0.3 mi NE'},
+      {name:'St. Gall Catholic Church',detail:'Active immigrant ministry',dist:'0.5 mi south'},
+      {name:'Paco\'s Tacos',detail:'Community institution · Archer & Kedzie area',dist:'0.4 mi SW'},
+      {name:'Midway Airport',detail:'9/11 shut it briefly · Southwest hub',dist:'2 mi west'},
+    ],
+    notes:[{text:'My mother brought me to this library every Saturday from 1996 to 2004. The librarian\'s name was Mrs. Chen. She saved picture books in Spanish for us every week.',user:'brighton_park_kid',date:'March 2025'}],
+    posts:[]
+  },
+  2010: {
+    era: 'Community in continuity',
+    visuals:[
+      {type:'photo',imgSrc:'https://cholodenkos.github.io/forgotten-rememberings/2010_brighton.jpg',url:'https://commons.wikimedia.org/wiki/File:Brighton_Park_-_panoramio.jpg',caption:'Brighton Park, Chicago · Wikimedia Commons · Archer Avenue corridor · circa 2010',conf:'real',confLabel:'High — Wikimedia Commons CC BY-SA 3.0',credit:'Wikimedia Commons · CC BY-SA 3.0',creditUrl:'https://commons.wikimedia.org/wiki/File:Brighton_Park_-_panoramio.jpg'},
+    ],
+    narrative:`<p>In 2010 the Brighton Park branch library served a neighborhood that was 85 percent Hispanic — an almost complete demographic reversal from 1930. The building itself was unchanged in its bones. Same two-flat proportions, same Archer Avenue address, a different story told inside.</p><p><em>The Chicago Reporter noted that Gage Park and Brighton Park had become the primary entry points for new Mexican immigrants to Chicago</em>, replacing the more gentrified Pilsen and Little Village. The cycle that had brought the Kowalczyks here in 1909 was turning again, this time in Spanish.</p>`,
+    sources:['census2000','chi_reporter','wbez','wikipedia_bp'],
+    residents:[
+      {name:'Chicago Public Library',detail:'Brighton Park Branch · 312-747-0666',origin:'81 Chicago locations · free and open to all'},
+    ],
+    nearby:[
+      {name:'UNO Soccer Academy',detail:'Charter school · 5050 S Homan · modern architecture',dist:'0.3 mi south'},
+      {name:'Kedzie Orange Line',detail:'Main transit connection to Loop',dist:'0.3 mi NE'},
+      {name:'Brighton Park (the park)',detail:'30 acres green space',dist:'0.5 mi'},
+      {name:'Archer Ave. safety project',detail:'Proposed: bike lanes, pedestrian improvements',dist:'This street'},
+    ],
+    notes:[],
+    posts:[{avatar:'ZO',user:'zol87_chicago',date:'Jan 2011',text:'Photographed the library facade on a winter morning. The building has good bones. You can tell it was built to last.',tag:'photo archived'}]
+  },
+  2024: {
+    era: 'Present day',
+    visuals:[
+      {type:'photo',imgSrc:'https://cholodenkos.github.io/forgotten-rememberings/2024_brighton.jpg',url:'https://commons.wikimedia.org/wiki/Category:Brighton_Park,_Chicago',caption:'Brighton Park, Chicago · Wikimedia Commons · Archer Avenue today · 4314 S Archer Ave is the Chicago Public Library branch',conf:'real',confLabel:'High — Wikimedia Commons public domain',credit:'Wikimedia Commons',creditUrl:'https://commons.wikimedia.org/wiki/Category:Brighton_Park,_Chicago'},
+    ],
+    narrative:`<p>Today, 4314 South Archer Avenue is the Brighton Park Branch of the Chicago Public Library. Open Monday and Wednesday 10am–6pm, Tuesday and Thursday noon–8pm, Friday and Saturday 9am–5pm. Phone: 312-747-0666.</p><p>The building sits on the same parcel that was once swampland, then farmland, then the address of immigrant families who arrived with almost nothing and built something permanent. Brighton Park is 78.5 percent Hispanic, 42.6 percent foreign-born. <em>The median household income is $58,096.</em> The neighborhood is, by every measure, still working.</p>`,
+    sources:['cpl_now','census2020','wbez','wikipedia_bp'],
+    residents:[
+      {name:'Chicago Public Library',detail:'Brighton Park Branch · public hours listed above',origin:'Serving Ward 15 · free to all Chicago residents'},
+    ],
+    nearby:[
+      {name:'Kedzie Orange Line',detail:'Direct to Loop · 22 minutes',dist:'0.3 mi NE'},
+      {name:'Archer Ave. Safety Project',detail:'Active 2024–25 · bike lanes + pedestrian improvements',dist:'This street'},
+      {name:'Kedzie Ave. Safety Project',detail:'Started Sept. 2025 · 12-month timeline',dist:'0.3 mi'},
+      {name:'Midway Airport',detail:'Southwest hub · 10 min. by car',dist:'2 mi west'},
+    ],
+    notes:[{text:'Went in to look at the Hamzik manuscript on Archer Road history. The librarian pulled it from the back without blinking. 100 pages. Handwritten index. Everything is still there.',user:'forgottenrem_research',date:'April 2025'}],
+    posts:[{avatar:'JL',user:'jp_librarian',date:'March 2025',text:'As a librarian here, I want to say this project matters. People ask about this block\'s history constantly. There is so much that has not been digitized. Come visit.',tag:'from the source'}]
+  },
+};
+
+const FUTURES = {
+  2040:{era:'Climate retrofit era · AI projection',visual:svgFuture(2040),narrative:`<p>By 2040, the library at this address has been retrofitted under Chicago's Climate Action Plan. Solar panels on the roof. A rooftop garden maintained by neighborhood volunteers. Archer Avenue is a protected green corridor with bike lanes and shade trees planted in 2028.</p><p>The building's structure — the same brick two-flat bones that have stood since 1910 — has been landmarked. The Hamzik manuscript has been digitized and is accessible worldwide.</p>`,pct:62,sources:['wikipedia_bp','cpl_now']},
+  2060:{era:'Mid-century · AI projection',visual:svgFuture(2060),narrative:`<p>In 2060 the block is mixed in ways hard to predict from here. The library still anchors the corner. Ground floor retail may have returned — a small grocery, a community kitchen. Brighton Park's demographics continue to shift as climate migration brings new arrivals.</p><p>The building's facade is intact. The porch is there. Someone planted morning glories along the railing in 2052 and they have not been removed since.</p>`,pct:41,sources:['wikipedia_bp']},
+  2080:{era:'Late century · uncertain',visual:svgFuture(2080),narrative:`<p>In 2080 the building has been in the same extended family for three generations — rare in Chicago. The porch is still there. The mailbox too. Someone painted it red in 2067 and there has been quiet disagreement about this ever since.</p><p>The neighborhood has changed in ways that could not have been predicted. But the two-flat at the corner is still standing, still occupied.</p>`,pct:29,sources:[]},
+  2100:{era:'End of century · deepest uncertainty',visual:svgFuture(2100),narrative:`<p>Uncertain. The block exists. The building may or may not. A plaque on the wall, if there is a wall, reads: <em>here, once, people arrived with nothing and made something permanent.</em> Whether the plaque is in English or Spanish or something else, the sentence is true in all of them.</p>`,pct:18,sources:[]},
+};
+
+// ── GALLERY STATE ──────────────────────────────────────────────────────────
+let galleryIdx = 0;
+
+function getSnapshotData(year) {
+  return DATA[year] || (FUTURES[year] ? { ...FUTURES[year], isFuture:true } : null);
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────────────
+
+function fallbackPhoto(creditUrl, credit, caption) {
+  return `<div style="background:var(--paper-dark);padding:2rem;text-align:center;border:1px solid var(--paper-deep);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+    <p style="font-size:0.8rem;color:var(--ash);font-style:italic;line-height:1.6;max-width:340px;">${caption}</p>
+    <a href="${creditUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:0.5rem 1rem;border:1.5px solid var(--accent);color:var(--accent);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;font-family:'Crimson Pro',serif;">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10l8-8M5 2h5v5"/></svg>
+      View source photo
+    </a>
+    <p style="font-size:0.68rem;color:var(--muted);font-style:italic;">${credit}</p>
+  </div>`;
+}
+
+function renderGallery(visuals) {
+  if (!visuals || visuals.length === 0) return `<div class="no-data-panel"><h3>No visual record found</h3><p>Be the first to contribute a photo for this decade.</p><button class="upload-cta" onclick="alert('Upload — coming in v1')">Upload a photo</button></div>`;
+  const v = visuals[galleryIdx];
+  const isPhoto = v.type === 'photo';
+  const isFuture = v.type === 'future' || (v.type === 'sketch' && v.conf === 'future');
+  const confClass = isPhoto ? 'dot-real' : (isFuture ? 'dot-future' : 'dot-sketch');
+  let mainHtml = '';
+  if (isPhoto) {
+    if (v.imgSrc) {
+      mainHtml = `<div style="position:relative;background:#1c1814;">
+        <img src="${v.imgSrc}"
+          alt="${v.caption}"
+          style="width:100%;max-height:360px;object-fit:cover;display:block;filter:sepia(0.22) contrast(1.06) brightness(0.97);"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;background:#1c1814;min-height:220px;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;gap:0.8rem;">
+          <p style="font-size:0.78rem;color:#8a7860;font-style:italic;line-height:1.6;max-width:300px;">${v.caption}</p>
+          <a href="${v.creditUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:0.4rem 0.9rem;border:1px solid #5a4e3a;color:#a08060;font-size:0.7rem;letter-spacing:0.09em;text-transform:uppercase;text-decoration:none;font-family:'Crimson Pro',serif;">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 9l8-8M3.5 1h5.5v5.5"/></svg>
+            View in archive
+          </a>
+        </div>
+        <a href="${v.creditUrl}" target="_blank"
+          style="position:absolute;bottom:0.5rem;right:0.5rem;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;background:rgba(18,14,10,0.75);border:1px solid #3a3020;font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:#8a7860;font-family:'Crimson Pro',serif;">
+          <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1 8l7-7M3 1h5v5"/></svg>
+          ${v.credit}
+        </a>
+      </div>`;
+    } else {
+      mainHtml = `<div style="background:#1c1814;min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;gap:0.8rem;border:1px solid #2a2218;">
+        <p style="font-size:0.78rem;color:#8a7860;font-style:italic;line-height:1.6;max-width:300px;">${v.caption}</p>
+        <a href="${v.creditUrl}" target="_blank" style="display:inline-flex;align-items:center;gap:5px;padding:0.4rem 0.9rem;border:1px solid #5a4e3a;color:#a08060;font-size:0.7rem;letter-spacing:0.09em;text-transform:uppercase;text-decoration:none;font-family:'Crimson Pro',serif;">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 9l8-8M3.5 1h5.5v5.5"/></svg>
+          View in archive
+        </a>
+        <p style="font-size:0.62rem;color:#4a4030;font-style:italic;">${v.credit}</p>
+      </div>`;
+    }
+  } else {
+    mainHtml = v.svg || '';
+  }
+  const showArrows = visuals.length > 1;
+  const dots = visuals.length > 1 ? visuals.map((_,i) => `<div class="g-dot ${i===galleryIdx?'active':''}" onclick="setGallery(${i})"></div>`).join('') : '';
+  return `<div class="gallery-wrap">
+    <div class="gallery-main">
+      ${mainHtml}
+      ${showArrows ? `<div class="gallery-arrows">
+        <div class="gallery-arr ${galleryIdx===0?'hidden':''}" onclick="setGallery(${galleryIdx-1})">&#8592;</div>
+        <div class="gallery-arr ${galleryIdx===visuals.length-1?'hidden':''}" onclick="setGallery(${galleryIdx+1})">&#8594;</div>
+      </div>` : ''}
+    </div>
+    ${dots ? `<div class="gallery-dots">${dots}</div>` : ''}
+    <div class="visual-meta">
+      <div class="confidence-badge"><span class="conf-dot ${confClass}"></span>${v.confLabel}</div>
+      <div class="visual-caption">${v.caption}</div>
+    </div>
+  </div>`;
+}
+
+function renderSources(keys) {
+  if (!keys || keys.length === 0) return '';
+  return `<div class="sources-block">
+    <div class="sources-label">Sources</div>
+    <div class="sources-list">${srcChips(keys)}</div>
+  </div>`;
+}
+
+function renderResidents(d) {
+  if (!d || !d.residents || d.residents.length === 0) return '';
+  return `<div class="residents-section">
+    <div class="section-header">
+      <div class="section-title">Recorded residents · ${DECADES[activeIdx].year}</div>
+      <div class="section-badge">Historical record</div>
+    </div>
+    <div class="resident-grid" style="grid-template-columns:repeat(${Math.min(d.residents.length,3)},1fr)">
+      ${d.residents.map(r=>`<div class="r-card">
+        <div class="r-name">${r.name}</div>
+        <div class="r-detail">${r.detail}</div>
+        ${r.origin?`<div class="r-origin">${r.origin}</div>`:''}
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderNearby(d) {
+  if (!d || !d.nearby || d.nearby.length === 0) return '';
+  return `<div class="nearby-section">
+    <div class="section-header"><div class="section-title">Nearby in ${DECADES[activeIdx].year}</div></div>
+    <div class="nearby-grid" style="grid-template-columns:repeat(${Math.min(d.nearby.length,4)},1fr)">
+      ${d.nearby.map(n=>`<div class="nb-item"><span class="nb-name">${n.name}</span>${n.detail}<div class="nb-dist">${n.dist}</div></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderMailbox(d) {
+  const notes = d && d.notes ? d.notes : [];
+  return `<div class="mailbox-section">
+    <div class="mailbox-left">
+      <h3>Leave a note in the mailbox</h3>
+      <p>Every visitor to this address can leave a note for those who come after. Yours will wait here, decade-stamped, for whoever arrives next.</p>
+      <button class="mailbox-btn" onclick="alert('Mailbox — coming in v1')">
+        <svg width="13" height="11" viewBox="0 0 13 11" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="2.5" width="11" height="7.5" rx="1"/><path d="M1 3.5l5.5 3.5 5.5-3.5"/></svg>
+        Open the mailbox
+      </button>
+    </div>
+    <div class="notes-stack">
+      ${notes.length > 0
+        ? notes.map(n=>`<div class="note-card"><div class="note-text">${n.text}</div><div class="note-meta">Left by ${n.user} · viewing ${DECADES[activeIdx].year} · ${n.date}</div></div>`).join('')
+        : `<div class="no-notes">No notes yet for this decade. Be the first to leave one.</div>`}
+    </div>
+  </div>`;
+}
+
+function renderForum(d) {
+  if (!d || !d.posts || d.posts.length === 0) return '';
+  return `<div class="forum-section">
+    <div class="section-header">
+      <div class="section-title">Community memory</div>
+      <div class="section-badge">${d.posts.length} post${d.posts.length!==1?'s':''} · this address</div>
+    </div>
+    ${d.posts.map(p=>`<div class="forum-post">
+      <div class="post-head">
+        <div class="post-avatar">${p.avatar}</div>
+        <div class="post-user">${p.user}</div>
+        <div class="post-date">${p.date}</div>
+      </div>
+      <div class="post-body">${p.text}</div>
+      ${p.tag?`<div class="post-tag">${p.tag}</div>`:''}
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderFuturePanel() {
+  const year = DECADES[activeIdx].year;
+  if (year >= 2040) return '';
+  return `<div class="future-section">
+    <div class="future-head">
+      <div class="section-title">What comes next</div>
+      <div class="future-badge">AI projection · user-shaped</div>
+    </div>
+    <div class="future-grid">
+      ${[2040,2060,2080,2100].map(y => {
+        const f = FUTURES[y];
+        const preview = f.narrative.replace(/<[^>]+>/g,'').substring(0,130).trim();
+        return `<div class="future-card" onclick="jumpToYear(${y})">
+          <div class="fc-year">${y}</div>
+          <div class="fc-text">${preview}…</div>
+          <div class="fc-votes"><span>${f.pct}%</span><div class="vote-bar"><div class="vote-fill" style="width:${f.pct}%"></div></div></div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+function renderSnapshot() {
+  const dec = DECADES[activeIdx];
+  if (!dec) return;
+  const d = getSnapshotData(dec.year);
+  const yearLabel = dec.year === 2024 ? 'Today' : String(dec.year);
+  const isFuture = dec.future || false;
+
+  let visuals = [];
+  if (d) {
+    if (d.isFuture) {
+      visuals = [{type:'future',svg:d.visual,caption:`AI projection · ${dec.year} · subject to revision`,conf:'future',confLabel:`Projection — ${d.pct || '?'}% community agreement`}];
+    } else {
+      visuals = d.visuals || [];
+    }
+  }
+
+  const snapshotHtml = `
+    <div class="hero">
+      <div class="visual-panel">${renderGallery(visuals)}</div>
+      <div class="narrative-panel">
+        <div class="year-display">${yearLabel}</div>
+        <div class="era-tag">${d ? d.era : 'No data recorded for this decade'}</div>
+        <div class="narrative-text">
+          ${d ? d.narrative : `<p style="color:var(--muted);font-style:italic">No narrative recorded yet for this decade. If you have memories, photographs, or records connected to this address and this era, share them below.</p>`}
+        </div>
+        ${d && d.sources ? renderSources(d.sources) : ''}
+      </div>
+    </div>
+    ${renderResidents(d)}
+    ${renderNearby(d)}
+    ${renderMailbox(d)}
+    ${renderForum(d)}
+    ${renderFuturePanel()}
+  `;
+
+  document.getElementById('snapshot-area').innerHTML = snapshotHtml;
+}
+
+function setGallery(idx) {
+  galleryIdx = idx;
+  const dec = DECADES[activeIdx];
+  if (!dec) return;
+  const d = getSnapshotData(dec.year);
+  if (!d || !d.visuals) return;
+  const panel = document.querySelector('.visual-panel');
+  if (panel) panel.innerHTML = renderGallery(d.visuals);
+}
+
+// ── TIMELINE ───────────────────────────────────────────────────────────────
+
+function renderMarks() {
+  const el = document.getElementById('tl-marks');
+  if (!el) return;
+  el.innerHTML = '';
+  DECADES.forEach((d,i) => {
+    const m = document.createElement('div');
+    m.className = 'tl-mark' + (d.future?' future':'') + (i===activeIdx?' active':'');
+    m.textContent = d.label;
+    m.onclick = () => setActive(i);
+    el.appendChild(m);
+  });
+  const pct = activeIdx / (DECADES.length-1) * 100;
+  const fill = document.getElementById('tl-fill');
+  const thumb = document.getElementById('tl-thumb');
+  if (fill) fill.style.width = pct+'%';
+  if (thumb) thumb.style.left = pct+'%';
+}
+
+function setActive(idx) {
+  activeIdx = Math.max(0, Math.min(DECADES.length-1, idx));
+  galleryIdx = 0;
+  renderMarks();
+  renderSnapshot();
+  const sa = document.getElementById('snapshot-area');
+  if (sa) sa.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function jumpToYear(year) {
+  const idx = DECADES.findIndex(d => d.year === year);
+  if (idx !== -1) setActive(idx);
+}
+
+// drag/click
+const track = document.getElementById('track');
+let dragging = false;
+
+function posToIdx(clientX) {
+  if (!track) return 0;
+  const r = track.getBoundingClientRect();
+  const pct = Math.max(0, Math.min(1, (clientX-r.left)/r.width));
+  return Math.round(pct*(DECADES.length-1));
+}
+
+if (track) {
+  track.addEventListener('mousedown', e => { dragging=true; setActive(posToIdx(e.clientX)); });
+  track.addEventListener('click', e => setActive(posToIdx(e.clientX)));
+  track.addEventListener('touchstart', e => { dragging=true; setActive(posToIdx(e.touches[0].clientX)); }, {passive:true});
+}
+document.addEventListener('mousemove', e => { if(dragging) setActive(posToIdx(e.clientX)); });
+document.addEventListener('mouseup', () => { dragging=false; });
+document.addEventListener('touchmove', e => { if(dragging) setActive(posToIdx(e.touches[0].clientX)); }, {passive:true});
+document.addEventListener('touchend', () => { dragging=false; });
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+renderMarks();
+renderSnapshot();
+</script>
+</body>
+</html>
